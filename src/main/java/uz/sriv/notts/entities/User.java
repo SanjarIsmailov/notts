@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -20,4 +21,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String phoneNumber;
+    private List<User> followers;
+    private List<User> following;
 }
