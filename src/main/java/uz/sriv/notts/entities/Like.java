@@ -18,9 +18,7 @@ public class Like {
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "post_id")
     private Post post;
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 }

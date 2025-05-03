@@ -19,10 +19,8 @@ public class Follow {
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
     @ManyToOne
-    @JoinColumn(name = "follower_id")
     private User follower;
     @ManyToOne
-    @JoinColumn(name = "followed_id")
     private User followed;
     private LocalDateTime createdAt;
 }
