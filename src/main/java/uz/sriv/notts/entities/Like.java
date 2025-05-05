@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,11 +12,12 @@ import java.util.UUID;
 @Table(name = "likes")
 public class Like {
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }

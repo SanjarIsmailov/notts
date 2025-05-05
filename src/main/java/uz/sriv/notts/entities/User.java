@@ -6,22 +6,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
-    private String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String username;
     private String email;
     private String password;
     private String phoneNumber;
-    private List<User> followers;
-    private List<User> following;
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+    @OneToMany(mappedBy = "user")
+    private List<Like> likes;
+    @OneToMany(mappedBy = "follower")
+    private List<Follow> following;
+    @OneToMany(mappedBy = "followed")
+    private List<Follow> followers;
 }

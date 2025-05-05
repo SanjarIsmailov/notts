@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -17,14 +15,14 @@ import java.util.UUID;
 @Table(name = "posts")
 public class Post {
     @Id
-    @GeneratedValue
-    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String content;
-    private LocalDateTime createdAt;
-    private byte[] image;
+    private LocalDateTime time;
+    private String image;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes = new ArrayList<>();
+    @OneToMany(mappedBy = "post")
+    private List<Like> likes;
 }
